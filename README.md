@@ -97,7 +97,7 @@ Crisp.user.setNickname("John Doe");
 
 ##### Crisp.configure(WEBSITE_ID, options)
 
-Different options are available:
+Different options are available for `Crisp.configure(WEBSITE_ID, options)`:
 
 - autoload: Autoload Crisp once Crisp is configured. Default: `true`
 - tokenId: Session continuty token. Default: `null`
@@ -117,3 +117,47 @@ Crisp.configure(WEBSITE_ID, {
 ```
 
 ##### Crisp.load()
+
+`Crisp.load()` will include the Chatbox manually. This methods needs to be used if autoload is disabled.
+
+##### Crisp.setTokenId(tokenID)
+
+You will need to call `Crisp.setTokenId(tokenID)` to enable session continity.
+
+##### Crisp.setZIndex(zIndex)
+
+For instance `Crisp.zIndex(99999)` will update the chatbox windows Z-index.
+
+##### Crisp.setColorTheme(color)
+
+`Crisp.setColorTheme("green")` will set the chatbox color to green. The following colors are available
+
+`default`, `amber`, `black`, `blue`, `blue_grey`, `light_blue`, `brown`, `cyan`, `green`, `light_green`, `grey`, `indigo`, `orange`, `deep_orange`, `pink`, `purple`, `deep_purple`, `red`, `teal`
+
+##### Crisp.setHideOnAway(enabled)
+
+`Crisp.setHideOnAway(true)` will hide the Crisp chatbox when no one is available to answer.
+
+##### Crisp.setHideOnMobile(enabled)
+
+`Crisp.setHideOnMobile(true)` will hide the Crisp chatbox on mobile.
+
+##### Crisp.setPosition(position)
+
+`Crisp.setPosition("left")` will switch the Crisp chatbox position to the left.
+
+##### Crisp.setAvailabilityTooltip(enabled)
+
+`Crisp.setAvailabilityTooltip(false)` will hide the Crisp chatbox availability tooltip.
+
+##### Crisp.setVacationMode(enabled)
+
+`Crisp.setVacationMode(true)` will hide completely hide the Crisp chatbox.
+
+##### Crisp.muteSound(enabled)
+
+`Crisp.muteSound(true)` will hide mute notification sounds.
+
+##### Crisp.toggleOperatorCount(enabled)
+
+`Crisp.toggleOperatorCount(true)` will stop displaying the operator count.
