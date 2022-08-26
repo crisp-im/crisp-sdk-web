@@ -515,7 +515,7 @@ var key = Crisp.session.getData("user_id");
 Will get current session identifier (session_id)
 
 ```javascript
-var sessionId = Crisp.session.getIdentifier("");
+var sessionId = Crisp.session.getIdentifier();
 ```
 
 ##### Crisp.session.onLoaded(callback)
