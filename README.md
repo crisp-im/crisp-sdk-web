@@ -161,3 +161,199 @@ For instance `Crisp.zIndex(99999)` will update the chatbox windows Z-index.
 ##### Crisp.toggleOperatorCount(enabled)
 
 `Crisp.toggleOperatorCount(true)` will stop displaying the operator count.
+
+#### Chat
+
+##### Crisp.chat.show()
+
+`Crisp.chat.show()` will show the Crisp chat widget.
+
+##### Crisp.chat.hide()
+
+`Crisp.chat.hide()` will hide the Crisp chat widget.
+
+##### Crisp.chat.open()
+
+`Crisp.chat.open()` will open the Crisp chat widget.
+
+##### Crisp.chat.close()
+
+`Crisp.chat.close()` will close the Crisp chat widget.
+
+##### Crisp.chat.unreadCount()
+
+`var count = Crisp.chat.unreadCount()` will fetch unread the message count
+
+##### Crisp.chat.isChatOpened()
+
+`var isOpened = Crisp.chat.isChatOpened()` will return is the chat is opened.
+
+##### Crisp.chat.isVisible()
+
+`var isVisibleOpened = Crisp.chat.isVisible()` will return is the chat is visible.
+
+##### Crisp.chat.onChatInitiated(callback)
+
+```javascript
+Crisp.chat.onChatInitiated(() => {
+  // Executed once the chat was initiated from the user
+})
+```
+
+##### Crisp.chat.onChatOpened(callback)
+
+```javascript
+Crisp.chat.onChatOpened(() => {
+  // Executed once the chat was opened
+})
+```
+
+##### Crisp.chat.onChatClose(callback)
+
+```javascript
+Crisp.chat.onChatOpened(() => {
+  // Executed once the chat was opened
+})
+```
+
+#### Message
+
+##### Crisp.message.send(type, content)
+
+Sends a message as visitor to conversation.
+
+```javascript
+// Example 1: send a text message
+Crisp.message.send("text", "Hello there!");
+
+// Example 2: send a file message
+Crisp.message.send("file", { name: "Europa.jpg", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Europa-moon.jpg/600px-Europa-moon.jpg", type: "image/jpg" });
+
+// Example 3: send an animation message
+Crisp.message.send("animation", { url: "https://media.giphy.com/media/3oz8xPjPPvOwrGjip2/giphy.gif", type: "image/gif" });
+
+// Example 4: send an audio message
+Crisp.message.send("audio", { duration: 40, url: "https://storage.crisp.chat/users/upload/operator/aa0b64dd-9fb4-4db9-80d6-5a49eb84087b/d70935e1-c79e-4199-9568-944541657b78.webm", type: "audio/webm" });
+```
+
+##### Crisp.message.sendText(content)
+
+Sends a text message as visitor to conversation.
+
+```javascript
+Crisp.message.sendText("Hello there!");
+````
+
+##### Crisp.message.sendFile(content)
+
+Sends a file message as visitor to conversation.
+
+```javascript
+Crisp.message.sendFile("Hello there!", { name: "Europa.jpg", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Europa-moon.jpg/600px-Europa-moon.jpg", type: "image/jpg" });
+````
+
+##### Crisp.message.sendAnimation(content)
+
+Sends a animation message as visitor to conversation.
+
+```javascript
+Crisp.message.sendAnimation("Hello there!", { url: "https://media.giphy.com/media/3oz8xPjPPvOwrGjip2/giphy.gif", type: "image/gif" });
+````
+
+##### Crisp.message.sendAudio(content)
+
+Sends a audio message as visitor to conversation.
+
+```javascript
+Crisp.message.sendAudio("Hello there!", { duration: 40, url: "https://storage.crisp.chat/users/upload/operator/aa0b64dd-9fb4-4db9-80d6-5a49eb84087b/d70935e1-c79e-4199-9568-944541657b78.webm", type: "audio/webm" });
+````
+
+##### Crisp.message.show(type, content)
+
+Shows a message as operator in local chatbox.
+
+```javascript
+// Example 1: show a text message
+Crisp.message.show("text", "Can I help?!");
+
+// Example 2: show a file message
+Crisp.message.show("file", { name: "Europa.jpg", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Europa-moon.jpg/600px-Europa-moon.jpg", type: "image/jpg" });
+
+// Example 3: show a picker message
+Crisp.message.show("picker", { "id": "call-date", "text": "Pick your date!", "choices": [{ "value": "1", "label": "Today, 1:00PM.", "selected": false }, { "value": "2", "label": "Tomorrow, 3:45PM.", "selected": false }]});
+
+// Example 4: show a field message
+Crisp.message.show("field", { "id": "name-field", "text": "What is your name?", "explain": "Enter your name..." });
+```
+
+##### Crisp.message.showText(content)
+
+Shows a text message as operator in local chatbox.
+
+```javascript
+Crisp.message.showText("Can I help?!");
+```
+
+##### Crisp.message.showText(content)
+
+Shows a text message as operator in local chatbox.
+
+```javascript
+Crisp.message.showFile({ name: "Europa.jpg", url: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Europa-moon.jpg/600px-Europa-moon.jpg", type: "image/jpg" });
+```
+
+##### Crisp.message.showPicker(content)
+
+Shows a text message as operator in local chatbox.
+
+```javascript
+Crisp.message.showPicker({ "id": "call-date", "text": "Pick your date!", "choices": [{ "value": "1", "label": "Today, 1:00PM.", "selected": false }, { "value": "2", "label": "Tomorrow, 3:45PM.", "selected": false }]});
+```
+
+##### Crisp.message.showField(content)
+
+Shows a text message as operator in local chatbox.
+
+```javascript
+Crisp.message.showField({ "id": "call-date", "text": "Pick your date!", "choices": [{ "value": "1", "label": "Today, 1:00PM.", "selected": false }, { "value": "2", "label": "Tomorrow, 3:45PM.", "selected": false }]});
+```
+
+##### Crisp.message.markAsRead()
+
+Marks all messages as read
+
+```javascript
+Crisp.chat.markAsRead();
+```
+
+##### Crisp.message.onMessageSent(callback)
+
+```javascript
+Crisp.chat.onMessageSent(() => {
+  // Executed once a message is submitted by the visitor
+})
+```
+
+##### Crisp.message.onMessageReceived(callback)
+
+```javascript
+Crisp.chat.onMessageReceived(() => {
+  // Executed once a message is received by the visitor
+})
+```
+
+##### Crisp.message.onMessageComposeSent(callback)
+
+```javascript
+Crisp.chat.onMessageComposeSent(() => {
+  // Executed once a message compose event is submitted by the visitor
+})
+```
+
+##### Crisp.message.onMessageComposeReceive(callback)
+
+```javascript
+Crisp.chat.onMessageComposeReceive(() => {
+  // Executed once a message compose event is received by the visitor
+})
+```
