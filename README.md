@@ -357,3 +357,61 @@ Crisp.chat.onMessageComposeReceive(() => {
   // Executed once a message compose event is received by the visitor
 })
 ```
+
+
+#### User
+
+##### Crisp.user.setNickname(nickname)
+
+`Crisp.user.setNickname("John Doe")` will update user's name.
+
+##### Crisp.user.setEmail(email, hmac)
+
+`Crisp.user.setEmail("john.doe@gmail.com")` will update user's email.
+
+
+`Crisp.user.setEmail("john.doe@gmail.com", HMAC)` will update user's email and mark the user as verified. 
+Please check our documentation here if you want to use the session verification: https://docs.crisp.chat/guides/chatbox-sdks/web-sdk/identity-verification/
+
+##### Crisp.user.setPhone(phone)
+
+`Crisp.user.setPhone("0044346354635")` will update user's phone number.
+
+##### Crisp.user.setAvatar(avatar)
+
+`Crisp.user.setAvatar("https://pbs.twimg.com/profile_images/834424630630817795/TfyS4uXb_400x400.jpg")` will update user's avatar.
+
+##### Crisp.user.setCompany(name, companyInformation)
+
+Example 1: set user company name only:
+```javascript
+Crisp.user.setCompany("Stripe");
+```
+
+Example 2: set user company name and location:
+```javascript
+Crisp.user.setCompany("Stripe", {
+  geolocation: {
+    city: "San Fransisco",
+    country: "US"
+  }
+});
+```
+
+Example 3: set all user company details:
+$crisp.push(["set", "user:company", ["Crisp", { url: "https://crisp.chat/", description: "Give your customer experience a human touch.", employment: ["CTO", "Software Engineer"], geolocation: ["FR", "Nantes"] }]]);
+
+
+```javascript
+Crisp.user.setCompany("Stripe", {
+  url: "https://stripe.com",
+  description: "Payments infrastructure for the internet",
+  employment: {
+    title: "Product Manager"
+  },
+  geolocation: {
+    city: "San Fransisco",
+    country: "US"
+  }
+});
+```
