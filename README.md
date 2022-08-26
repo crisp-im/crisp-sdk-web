@@ -358,7 +358,6 @@ Crisp.chat.onMessageComposeReceive(() => {
 })
 ```
 
-
 #### User
 
 ##### Crisp.user.setNickname(nickname)
@@ -399,9 +398,6 @@ Crisp.user.setCompany("Stripe", {
 ```
 
 Example 3: set all user company details:
-$crisp.push(["set", "user:company", ["Crisp", { url: "https://crisp.chat/", description: "Give your customer experience a human touch.", employment: ["CTO", "Software Engineer"], geolocation: ["FR", "Nantes"] }]]);
-
-
 ```javascript
 Crisp.user.setCompany("Stripe", {
   url: "https://stripe.com",
@@ -415,3 +411,125 @@ Crisp.user.setCompany("Stripe", {
   }
 });
 ```
+
+##### Crisp.user.getNickame()
+
+`var nickname = Crisp.user.getNickname()` gets user's name.
+
+##### Crisp.user.getEmail()
+
+`var email = Crisp.user.getEmail()` gets user's email.
+
+##### Crisp.user.getPhone()
+
+`var phone = Crisp.user.getPhone()` gets user's phone.
+
+##### Crisp.user.getAvatar()
+
+`var avatar = Crisp.user.getAvatar()` gets user's avatar.
+
+##### Crisp.user.getCompany()
+
+`var company = Crisp.user.getCompany()` gets user's company.
+
+##### Crisp.user.onNicknameChanged(callback)
+
+```javascript
+Crisp.user.onNicknameChanged(() => {
+  // Executed once user's nickname is changed
+})
+```
+
+##### Crisp.user.onEmailChanged(callback)
+
+```javascript
+Crisp.user.onEmailChanged(() => {
+  // Executed once user's email is changed
+})
+```
+
+##### Crisp.user.onPhoneChanged(callback)
+
+```javascript
+Crisp.user.onPhoneChanged(() => {
+  // Executed once user's phone is changed
+})
+```
+
+##### Crisp.user.onAvatarChanged(callback)
+
+```javascript
+Crisp.user.onAvatarChanged(() => {
+  // Executed once user's avatar is changed
+})
+```
+
+#### Session
+
+##### Crisp.session.reset()
+
+`Crisp.session.reset()` will reset the user's session.
+
+##### Crisp.session.setSegments(segments, overwrite = false)
+
+`Crisp.session.setSegments(["bug", "ios"])` will append `bug` and `ios` segments.
+
+`Crisp.session.setSegments(["bug", "ios"], true)` will overwrite existing segments.
+
+##### Crisp.session.setData(data)
+
+Will add custom data to the current session.
+
+```javascript
+Crisp.session.setData({
+  user_id : "123456",
+  plan : "free"
+});
+```
+
+##### Crisp.session.pushEvent(name, data)
+
+Crisp allows pushing custom events. Those events can then be used in order to trigger automated campaigns or bot scenarios.
+
+```javascript
+
+Crisp.session.pushEvent("signup");
+
+// Or with custom parameters
+Crisp.session.pushEvent("purchase", {
+  price: 66.66,
+  item: "XXXX_XXXX"
+});
+```
+
+##### Crisp.session.getData()
+
+Will get custom data key
+
+```javascript
+var key = Crisp.session.getData("user_id");
+```
+
+##### Crisp.session.getIdentifier()
+
+Will get current session identifier (session_id)
+
+```javascript
+var sessionId = Crisp.session.getIdentifier("");
+```
+
+##### Crisp.session.onLoaded(callback)
+
+```javascript
+Crisp.session.onLoaded((sessionId) => {
+  // Executed once the Crisp session is loaded
+
+  console.log(sessionId);
+})
+```
+
+#### Trigger
+
+##### Crisp.trigger.run(name)
+
+`Crisp.trigger.name("growth_hack")` will run the `growth_hack` trigger.

@@ -46,6 +46,12 @@ class CrispSession {
     $crisp.push(["set", "session:data", [data]]);
   }
 
+  pushEvent(name: string, data: object = {}, color: EventsColors = EventsColors.Blue) {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push(["set", "session:event", [[[name, data, color]]]]);
+    }
+  }
+
   getData(key: string) : string | boolean | number | undefined {
     if (!this.parent.isCrispInjected()) {
       return undefined;
@@ -62,11 +68,6 @@ class CrispSession {
     return window.$crisp.get("session:identifier");
   }
 
-  pushEvent(name: string, data: object = {}, color: EventsColors = EventsColors.Blue) {
-    if (this.parent.isCrispInjected()) {
-      window.$crisp.push(["set", "session:event", [[[name, data, color]]]]);
-    }
-  }
 
   onLoaded(callback: Function) {
     this.parent.createSingletonIfNecessary();
