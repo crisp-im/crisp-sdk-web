@@ -51,15 +51,15 @@ class CrispUser {
   setCompany(name : string, data: CompanyData) {
     const _payload : CompanyData = {};
 
-    if (data.url) {
+    if (data && data.url) {
       _payload.url = data.url;
     }
 
-    if (data.description) {
+    if (data && data.description) {
       _payload.description = data.description;
     }
 
-    if (data.employment) {
+    if (data && data.employment) {
       _payload.employment = [
         (data.employment as CompanyDataEmployment).title
       ];
