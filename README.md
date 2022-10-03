@@ -42,7 +42,7 @@ Crisp.configure(WEBSITE_ID, {
 
 Then, you can include Crisp using `Crisp.load()`. Note that Methods such as `Crisp.chat.open()` or  `Crisp.chat.show()` are implicitly calling the loading method.
 
-## Identity Managemnet
+## Identity Management
 
 You may attach user information so your customers don't need to manually fill their email address. Providing custom data is possible as well.
 
