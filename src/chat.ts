@@ -36,7 +36,7 @@ class CrispChat {
       return 0;
     }
 
-    return $crisp.get("chat:unread:count");
+    return window.$crisp.get("chat:unread:count");
   }
 
   isChatOpened() : boolean {
