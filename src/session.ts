@@ -43,7 +43,7 @@ class CrispSession {
 
     this.parent.createSingletonIfNecessary();
 
-    $crisp.push(["set", "session:data", [data]]);
+    $crisp.push(["set", "session:data", [_payload]]);
   }
 
   pushEvent(name: string, data: object = {}, color: EventsColors = EventsColors.Blue) {
