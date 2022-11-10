@@ -221,6 +221,12 @@ class Crisp {
     window.$crisp.push(["config", "hide:vacation", [enabled]]);
   }
 
+  setSafeMode(safe: boolean = true) {
+    this.createSingletonIfNecessary();
+
+    window.$crisp.push(["safe", safe]);
+  }
+
   muteSound(mute : boolean) {
     this.createSingletonIfNecessary();
 
