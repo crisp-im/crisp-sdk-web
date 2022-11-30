@@ -42,11 +42,13 @@ declare global {
 type Options = {
   autoload?: boolean,
   tokenId?: string
+  locale?: string
   sessionMerge?: boolean
   cookieDomain?: string
   cookieExpire?: number
   lockMaximized?: boolean
   lockFullview?: boolean
+  safeMode?: boolean
 };
 
 enum ChatboxColors {
@@ -81,11 +83,13 @@ class Crisp {
   private websiteId: string = "";
   private autoload?: boolean;
   private tokenId?: string;
+  private locale?: string;
   private sessionMerge?: boolean;
   private cookieDomain?: string;
   private cookieExpire?: number;
   private lockFullview?: boolean;
   private lockMaximized?: boolean;
+  private safeMode?: boolean;
 
   // States
   private injected: boolean = false;
@@ -108,11 +112,13 @@ class Crisp {
   configure(websiteId: string, options: Options = {autoload : true }) {
     this.websiteId = websiteId;
     this.tokenId = options.tokenId;
+    this.locale = options.locale;
     this.autoload = options.autoload;
     this.sessionMerge = options.sessionMerge;
     this.cookieDomain = options.cookieDomain;
     this.lockFullview = options.lockFullview;
     this.lockMaximized = options.lockMaximized;
+    this.safeMode = options.safeMode;
 
     // Autoload Crisp is option is enavled
     if (this.autoload) {
@@ -149,6 +155,10 @@ class Crisp {
       window.CRISP_RUNTIME_CONFIG.session_merge = true;
     }
 
+    if (this.locale) {
+      window.CRISP_RUNTIME_CONFIG.locale = this.locale;
+    }
+
     if (this.lockFullview) {
       window.CRISP_RUNTIME_CONFIG.lock_full_view = true;
     }
@@ -163,6 +173,10 @@ class Crisp {
 
     if (this.cookieExpire) {
       window.CRISP_COOKIE_EXPIRE = this.cookieExpire;
+    }
+
+    if (this.safeMode === true) {
+     this.setSafeMode(true);
     }
 
     const _script = document.createElement("script");
