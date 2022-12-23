@@ -1,6 +1,6 @@
 # Crisp SDK Web
 
-[![NPM](https://img.shields.io/npm/v/crisp-api.svg)](https://www.npmjs.com/package/crisp-sdk-web) [![Downloads](https://img.shields.io/npm/dt/crisp-sdk-web.svg)](https://www.npmjs.com/package/crisp-sdk-web)
+[![NPM](https://img.shields.io/npm/v/crisp-sdk-web.svg)](https://www.npmjs.com/package/crisp-sdk-web) [![Downloads](https://img.shields.io/npm/dt/crisp-sdk-web.svg)](https://www.npmjs.com/package/crisp-sdk-web)
 
 The Crisp SDK Web allows embedding Crisp chat widget using web frameworks such as React, Vue, or Angular. This SDK wraps the [$crisp](https://docs.crisp.chat/guides/chatbox-sdks/web-sdk/dollar-crisp/) methods and provides Typescript definitions.
 
