@@ -21,6 +21,7 @@
   },
   "scripts": {
     "build": "rm -r -f dist && rollup -c",
+    "test": "npm run lint",
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:prettier": "prettier --check \"{src,test}/**/*.ts\"",
     "typecheck": "tsc -p ./tsconfig.json",
