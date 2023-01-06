@@ -4,7 +4,7 @@
 
 The Crisp SDK Web allows embedding Crisp chat widget using web frameworks such as React, Vue, or Angular. This SDK wraps the [$crisp](https://docs.crisp.chat/guides/chatbox-sdks/web-sdk/dollar-crisp/) methods and provides Typescript definitions.
 
-Copyright 2022 Crisp IM SAS. See LICENSE for copying information.
+Copyright 2023 Crisp IM SAS. See LICENSE for copying information.
 
 * **😘 Maintainers**: [@baptistejamin](https://github.com/baptistejamin)
 
