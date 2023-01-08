@@ -81,7 +81,7 @@ enum ChatboxPosition {
 class Crisp {
   // Options
   private websiteId: string = "";
-  private autoload?: boolean;
+  private autoload: boolean = true;
   private tokenId?: string;
   private locale?: string;
   private sessionMerge?: boolean;
@@ -109,16 +109,19 @@ class Crisp {
     this.trigger = new CrispTrigger(this);
   }
 
-  configure(websiteId: string, options: Options = {autoload : true }) {
+  configure(websiteId: string, options: Options = {}) {
     this.websiteId = websiteId;
     this.tokenId = options.tokenId;
     this.locale = options.locale;
-    this.autoload = options.autoload;
     this.sessionMerge = options.sessionMerge;
     this.cookieDomain = options.cookieDomain;
     this.lockFullview = options.lockFullview;
     this.lockMaximized = options.lockMaximized;
     this.safeMode = options.safeMode;
+
+    if (options.autoload !== undefined) {
+      this.autoload = options.autoload;
+    }
 
     // Autoload Crisp is option is enavled
     if (this.autoload) {
