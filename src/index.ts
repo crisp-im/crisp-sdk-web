@@ -143,10 +143,6 @@ class Crisp {
       throw new Error("websiteId must be set before loading Crisp");
     }
 
-    if (!_head || !_head[0]) {
-      return this.deferredLoading();
-    }
-
     window.CRISP_WEBSITE_ID = this.websiteId;
     window.CRISP_RUNTIME_CONFIG = {};
 
@@ -176,6 +172,10 @@ class Crisp {
 
     if (this.cookieExpire) {
       window.CRISP_COOKIE_EXPIRE = this.cookieExpire;
+    }
+
+    if (!_head || !_head[0]) {
+      return this.deferredLoading();
     }
 
     if (this.safeMode === true) {
