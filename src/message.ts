@@ -36,6 +36,24 @@ type FieldMessage = {
   explain: string
 };
 
+type CarouselMessageTargets = {
+  title: string,
+  label: string,
+  description: boolean,
+  image?: string
+  actions: CarouselMessageTargetsActions[]
+};
+
+type CarouselMessageTargetsActions = {
+  label: string,
+  url: string
+};
+
+type CarouselMessage = {
+  text: string,
+  targets: CarouselMessageTargets[]
+};
+
 class CrispMessage {
   private parent: Crisp;
 
@@ -65,7 +83,7 @@ class CrispMessage {
     this.send("audio", content);
   }
 
-  show(type: string, content: string | FileMessage | AnimationMessage | AudioMessage | FieldMessage | PickerMessage) {
+  show(type: string, content: string | FileMessage | AnimationMessage | AudioMessage | FieldMessage | PickerMessage | CarouselMessage) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["do", "message:show", [type, content]]);
@@ -93,6 +111,10 @@ class CrispMessage {
 
   showField(content: FieldMessage) {
     this.show("field", content);
+  }
+
+  showCarousel(content: CarouselMessage) {
+    this.show("carousel", content);
   }
 
   markAsRead() {
