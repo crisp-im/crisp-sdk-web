@@ -40,6 +40,7 @@ declare global {
 
 
 type Options = {
+  clientUrl?: string
   autoload?: boolean,
   tokenId?: string
   locale?: string
@@ -80,6 +81,7 @@ enum ChatboxPosition {
 
 class Crisp {
   // Options
+  private clientUrl: string = "https://client.crisp.chat/l.js";
   private websiteId: string = "";
   private autoload: boolean = true;
   private tokenId?: string;
@@ -118,6 +120,10 @@ class Crisp {
     this.lockFullview = options.lockFullview;
     this.lockMaximized = options.lockMaximized;
     this.safeMode = options.safeMode;
+
+    if (options.clientUrl !== undefined) {
+      this.clientUrl = options.clientUrl;
+    }
 
     if (options.autoload !== undefined) {
       this.autoload = options.autoload;
@@ -184,7 +190,7 @@ class Crisp {
 
     const _script = document.createElement("script");
 
-    _script.src="https://client.crisp.chat/l.js";
+    _script.src = this.clientUrl;
     _script.async = true;
 
     _head[0].appendChild(_script);
