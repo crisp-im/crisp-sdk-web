@@ -1,6 +1,6 @@
 import CrispMessage from "./message";
 
-import {
+export {
   AnimationMessage,
   AudioMessage,
   FileMessage,
@@ -11,7 +11,7 @@ import {
 
 import CrispUser from "./user";
 
-import {
+export {
   CompanyData,
   CompanyDataEmployment,
   CompanyDataGeolocation
@@ -21,7 +21,7 @@ import CrispTrigger from "./trigger";
 
 import CrispSession from "./session";
 
-import {
+export {
   EventsColors,
 } from "./session";
 
@@ -39,7 +39,7 @@ declare global {
 /* eslint-enable no-var, @typescript-eslint/no-explicit-any */
 
 
-type Options = {
+export type Options = {
   clientUrl?: string
   autoload?: boolean,
   tokenId?: string
@@ -52,7 +52,7 @@ type Options = {
   safeMode?: boolean
 };
 
-enum ChatboxColors {
+export enum ChatboxColors {
   Default = "default",
   Amber = "amber",
   Black = "black",
@@ -74,12 +74,12 @@ enum ChatboxColors {
   Teal = "teal",
 }
 
-enum ChatboxPosition {
+export enum ChatboxPosition {
   Left = "left",
   Right = "right",
 }
 
-class Crisp {
+export default class Crisp {
   // Options
   private clientUrl: string = "https://client.crisp.chat/l.js";
   private websiteId: string = "";
@@ -185,7 +185,7 @@ class Crisp {
     }
 
     if (this.safeMode === true) {
-     this.setSafeMode(true);
+      this.setSafeMode(true);
     }
 
     const _script = document.createElement("script");
@@ -198,47 +198,47 @@ class Crisp {
     this.injected = true;
   }
 
-  setTokenId(tokenId : string) {
+  setTokenId(tokenId: string) {
     this.tokenId = tokenId;
   }
 
-  setZIndex(zIndex : number) {
+  setZIndex(zIndex: number) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "container:index", [zIndex]]);
   }
 
-  setColorTheme(color : ChatboxColors) {
+  setColorTheme(color: ChatboxColors) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "color:theme", [color]]);
   }
 
-  setHideOnAway(enabled : boolean) {
+  setHideOnAway(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:away", [enabled]]);
   }
 
-  setHideOnMobile(enabled : boolean) {
+  setHideOnMobile(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:mobile", [enabled]]);
   }
 
-  setPosition(position : ChatboxPosition) {
+  setPosition(position: ChatboxPosition) {
     this.createSingletonIfNecessary();
 
     $crisp.push(["config", "position:reverse", [position === ChatboxPosition.Left]]);
   }
 
-  setAvailabilityTooltip(enabled : boolean) {
+  setAvailabilityTooltip(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "availability:tooltip", [enabled]]);
   }
 
-  setVacationMode(enabled : boolean) {
+  setVacationMode(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:vacation", [enabled]]);
@@ -250,13 +250,13 @@ class Crisp {
     window.$crisp.push(["safe", safe]);
   }
 
-  muteSound(mute : boolean) {
+  muteSound(mute: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "sound:mute", [mute]]);
   }
 
-  toggleOperatorCount(enabled : boolean) {
+  toggleOperatorCount(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "show:operator:count", [enabled]]);
@@ -269,13 +269,13 @@ class Crisp {
     }
   }
 
-  autoInjectIfNecessasy(){
+  autoInjectIfNecessasy() {
     if (!this.isCrispInjected()) {
       this.load();
     }
   }
 
-  isCrispInjected() : boolean {
+  isCrispInjected(): boolean {
     return this.injected === true || (window.$crisp && window.$crisp.is);
   }
 
@@ -291,17 +291,4 @@ const singleton = new Crisp();
 export {
   singleton as Crisp,
   Crisp as CrispClass
-}
-
-export type {
-  AnimationMessage,
-  AudioMessage,
-  FileMessage,
-  PickerMessage,
-  PickerMessageChoices,
-  FieldMessage,
-  CompanyData,
-  CompanyDataEmployment,
-  CompanyDataGeolocation,
-  EventsColors
 }
