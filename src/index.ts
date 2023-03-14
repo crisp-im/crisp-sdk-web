@@ -141,7 +141,7 @@ class Crisp {
     this.createSingletonIfNecessary();
 
     // Prevents from loading Crisp twice
-    if (this.isCrispInjected()) {
+    if (this.isCrispInjected() === true) {
       return;
     }
 
@@ -200,6 +200,15 @@ class Crisp {
 
   setTokenId(tokenId: string) {
     this.tokenId = tokenId;
+
+    // Refresh injected token?
+    if (this.isCrispInjected() === true) {
+      if (tokenId) {
+        window.CRISP_TOKEN_ID = tokenId;
+      } else {
+        delete window.CRISP_TOKEN_ID;
+      }
+    }
   }
 
   setZIndex(zIndex: number) {
@@ -269,14 +278,20 @@ class Crisp {
     }
   }
 
-  autoInjectIfNecessasy(){
-    if (!this.isCrispInjected()) {
+  autoInjectIfNecessasy() {
+    if (this.isCrispInjected() !== true) {
       this.load();
     }
   }
 
   isCrispInjected(): boolean {
-    return this.injected === true || (window.$crisp && window.$crisp.is);
+    // Check if Crisp was injected (either from the Web SDK, or from another \
+    //   source)
+    if (this.injected === true || (window.$crisp && window.$crisp.is)) {
+      return true;
+    }
+
+    return false;
   }
 
   private deferredLoading() {
