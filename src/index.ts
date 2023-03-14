@@ -198,47 +198,47 @@ class Crisp {
     this.injected = true;
   }
 
-  setTokenId(tokenId : string) {
+  setTokenId(tokenId: string) {
     this.tokenId = tokenId;
   }
 
-  setZIndex(zIndex : number) {
+  setZIndex(zIndex: number) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "container:index", [zIndex]]);
   }
 
-  setColorTheme(color : ChatboxColors) {
+  setColorTheme(color: ChatboxColors) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "color:theme", [color]]);
   }
 
-  setHideOnAway(enabled : boolean) {
+  setHideOnAway(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:away", [enabled]]);
   }
 
-  setHideOnMobile(enabled : boolean) {
+  setHideOnMobile(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:mobile", [enabled]]);
   }
 
-  setPosition(position : ChatboxPosition) {
+  setPosition(position: ChatboxPosition) {
     this.createSingletonIfNecessary();
 
     $crisp.push(["config", "position:reverse", [position === ChatboxPosition.Left]]);
   }
 
-  setAvailabilityTooltip(enabled : boolean) {
+  setAvailabilityTooltip(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "availability:tooltip", [enabled]]);
   }
 
-  setVacationMode(enabled : boolean) {
+  setVacationMode(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:vacation", [enabled]]);
@@ -250,13 +250,13 @@ class Crisp {
     window.$crisp.push(["safe", safe]);
   }
 
-  muteSound(mute : boolean) {
+  muteSound(mute: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "sound:mute", [mute]]);
   }
 
-  toggleOperatorCount(enabled : boolean) {
+  toggleOperatorCount(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "show:operator:count", [enabled]]);
@@ -275,7 +275,7 @@ class Crisp {
     }
   }
 
-  isCrispInjected() : boolean {
+  isCrispInjected(): boolean {
     return this.injected === true || (window.$crisp && window.$crisp.is);
   }
 

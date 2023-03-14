@@ -123,28 +123,28 @@ class CrispMessage {
     window.$crisp.push(["do", "message:read"]);
   }
 
-  onMessageSent(callback : Function) {
+  onMessageSent(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "message:sent"]);
     window.$crisp.push(["on", "message:sent", callback]);
   }
 
-  onMessageReceived(callback : Function) {
+  onMessageReceived(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "message:received"]);
     window.$crisp.push(["on", "message:received", callback]);
   }
 
-  onMessageComposeSent(callback : Function) {
+  onMessageComposeSent(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "message:compose:sent"]);
     window.$crisp.push(["on", "message:compose:sent", callback]);
   }
 
-  onMessageComposeReceive(callback : Function) {
+  onMessageComposeReceive(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "message:compose:received"]);

@@ -31,7 +31,7 @@ class CrispChat {
     }
   }
 
-  unreadCount() : number {
+  unreadCount(): number {
     if (!this.parent.isCrispInjected()) {
       return 0;
     }
@@ -39,7 +39,7 @@ class CrispChat {
     return window.$crisp.get("chat:unread:count");
   }
 
-  isChatOpened() : boolean {
+  isChatOpened(): boolean {
     if (!this.parent.isCrispInjected()) {
       return false;
     }
@@ -47,7 +47,7 @@ class CrispChat {
     return window.$crisp.is("chat:opened");
   }
 
-  isVisible() : boolean {
+  isVisible(): boolean {
     if (!this.parent.isCrispInjected()) {
       return false;
     }
