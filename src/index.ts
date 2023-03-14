@@ -309,6 +309,9 @@ export {
 }
 
 export type {
+  Options,
+  ChatboxColors,
+  ChatboxPosition,
   AnimationMessage,
   AudioMessage,
   FileMessage,
