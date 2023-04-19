@@ -79,7 +79,7 @@ export enum ChatboxPosition {
   Right = "right",
 }
 
-export default class Crisp {
+class Crisp {
   // Options
   private clientUrl: string = "https://client.crisp.chat/l.js";
   private websiteId: string = "";
