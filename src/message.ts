@@ -39,7 +39,7 @@ export type FieldMessage = {
 export type CarouselMessageTargets = {
   title: string,
   label: string,
-  description: boolean,
+  description: string,
   image?: string
   actions: CarouselMessageTargetsActions[]
 };
