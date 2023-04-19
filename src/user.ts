@@ -1,23 +1,23 @@
 import {CrispClass as Crisp} from "./index";
 
-type CompanyData = {
+export type CompanyData = {
   url?: string,
   description?: string,
   employment?: CompanyDataEmployment | string[],
   geolocation?: CompanyDataGeolocation | string[]
 };
 
-type CompanyDataEmployment = {
+export type CompanyDataEmployment = {
   title: string,
   role?: string
 };
 
-type CompanyDataGeolocation = {
+export type CompanyDataGeolocation = {
   country: string,
   city?: string
 };
 
-class CrispUser {
+export default class CrispUser {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -141,12 +141,4 @@ class CrispUser {
       window.$crisp.push(["on", "user:avatar:changed", callback]);
     }
   }
-}
-
-export default CrispUser;
-
-export type {
-  CompanyData,
-  CompanyDataEmployment,
-  CompanyDataGeolocation
 }

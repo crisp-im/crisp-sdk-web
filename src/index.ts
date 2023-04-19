@@ -1,6 +1,6 @@
 import CrispMessage from "./message";
 
-import {
+export {
   AnimationMessage,
   AudioMessage,
   FileMessage,
@@ -11,7 +11,7 @@ import {
 
 import CrispUser from "./user";
 
-import {
+export {
   CompanyData,
   CompanyDataEmployment,
   CompanyDataGeolocation
@@ -21,7 +21,7 @@ import CrispTrigger from "./trigger";
 
 import CrispSession from "./session";
 
-import {
+export {
   EventsColors,
 } from "./session";
 
@@ -39,7 +39,7 @@ declare global {
 /* eslint-enable no-var, @typescript-eslint/no-explicit-any */
 
 
-type Options = {
+export type Options = {
   clientUrl?: string
   autoload?: boolean,
   tokenId?: string
@@ -52,7 +52,7 @@ type Options = {
   safeMode?: boolean
 };
 
-enum ChatboxColors {
+export enum ChatboxColors {
   Default = "default",
   Amber = "amber",
   Black = "black",
@@ -74,12 +74,12 @@ enum ChatboxColors {
   Teal = "teal",
 }
 
-enum ChatboxPosition {
+export enum ChatboxPosition {
   Left = "left",
   Right = "right",
 }
 
-class Crisp {
+export default class Crisp {
   // Options
   private clientUrl: string = "https://client.crisp.chat/l.js";
   private websiteId: string = "";
@@ -185,7 +185,7 @@ class Crisp {
     }
 
     if (this.safeMode === true) {
-     this.setSafeMode(true);
+      this.setSafeMode(true);
     }
 
     const _script = document.createElement("script");
@@ -279,7 +279,7 @@ class Crisp {
   }
 
   autoInjectIfNecessasy() {
-    if (this.isCrispInjected() !== true) {
+    if (!this.isCrispInjected()) {
       this.load();
     }
   }
@@ -306,20 +306,4 @@ const singleton = new Crisp();
 export {
   singleton as Crisp,
   Crisp as CrispClass
-}
-
-export type {
-  Options,
-  ChatboxColors,
-  ChatboxPosition,
-  AnimationMessage,
-  AudioMessage,
-  FileMessage,
-  PickerMessage,
-  PickerMessageChoices,
-  FieldMessage,
-  CompanyData,
-  CompanyDataEmployment,
-  CompanyDataGeolocation,
-  EventsColors
 }

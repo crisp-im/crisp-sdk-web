@@ -1,6 +1,6 @@
 import {CrispClass as Crisp} from "./index";
 
-class CrispChat {
+export default class CrispChat {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -76,5 +76,3 @@ class CrispChat {
     window.$crisp.push(["on", "chat:closed", callback]);
   }
 }
-
-export default CrispChat;
