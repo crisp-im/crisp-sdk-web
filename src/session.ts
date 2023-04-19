@@ -52,7 +52,7 @@ export default class CrispSession {
     }
   }
 
-  getData(key: string) : string | boolean | number | undefined {
+  getData(key: string): string | boolean | number | undefined {
     if (!this.parent.isCrispInjected()) {
       return undefined;
     }
@@ -60,7 +60,7 @@ export default class CrispSession {
     return window.$crisp.get("session:data", key);
   }
 
-  getIdentifier() : string | null {
+  getIdentifier(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -76,7 +76,7 @@ export default class CrispSession {
     window.$crisp.push(["on", "session:loaded", callback]);
   }
 
-  private isValidDataValue(value: string) : boolean {
+  private isValidDataValue(value: string): boolean {
     return (
       typeof value === "string" ||
       typeof value === "number" ||

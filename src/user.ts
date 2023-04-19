@@ -48,8 +48,8 @@ export default class CrispUser {
     window.$crisp.push(["set", "user:avatar", [avatar]]);
   }
 
-  setCompany(name : string, data: CompanyData) {
-    const _payload : CompanyData = {};
+  setCompany(name: string, data: CompanyData) {
+    const _payload: CompanyData = {};
 
     if (data && data.url) {
       _payload.url = data.url;
@@ -74,7 +74,7 @@ export default class CrispUser {
     window.$crisp.push(["set", "user:company", [name, _payload]]);
   }
 
-  getEmail() : string | null {
+  getEmail(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -82,7 +82,7 @@ export default class CrispUser {
     return window.$crisp.get("user:email");
   }
 
-  getPhone() : string | null {
+  getPhone(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -90,7 +90,7 @@ export default class CrispUser {
     return window.$crisp.get("user:phone");
   }
 
-  getNickname() : string | null{
+  getNickname(): string | null{
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -98,7 +98,7 @@ export default class CrispUser {
     return window.$crisp.get("user:nickname");
   }
 
-  getAvatar() : string | null {
+  getAvatar(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -106,7 +106,7 @@ export default class CrispUser {
     return window.$crisp.get("user:avatar");
   }
 
-  getCompany() : object | null {
+  getCompany(): object | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -114,28 +114,28 @@ export default class CrispUser {
     return window.$crisp.get("user:company");
   }
 
-  onEmailChanged(callback : Function) {
+  onEmailChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["off", "user:email:changed"]);
       window.$crisp.push(["on", "user:email:changed", callback]);
     }
   }
 
-  onPhoneChanged(callback : Function) {
+  onPhoneChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["off", "user:phone:changed"]);
       window.$crisp.push(["on", "user:phone:changed", callback]);
     }
   }
 
-  onNicknameChanged(callback : Function) {
+  onNicknameChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["off", "user:nickname:changed"]);
       window.$crisp.push(["on", "user:nickname:changed", callback]);
     }
   }
 
-  onAvatarChanged(callback : Function) {
+  onAvatarChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["off", "user:avatar:changed"]);
       window.$crisp.push(["on", "user:avatar:changed", callback]);
