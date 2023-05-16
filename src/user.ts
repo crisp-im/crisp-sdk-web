@@ -1,4 +1,4 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
 export type CompanyData = {
   url?: string,
@@ -64,7 +64,7 @@ export default class CrispUser {
         (data.employment as CompanyDataEmployment).title
       ];
 
-      if ((data.employment as CompanyDataEmployment).role ) {
+      if ((data.employment as CompanyDataEmployment).role) {
         _payload.employment.push((data.employment as CompanyDataEmployment).role!);
       }
     }
@@ -90,7 +90,7 @@ export default class CrispUser {
     return window.$crisp.get("user:phone");
   }
 
-  getNickname(): string | null{
+  getNickname(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }

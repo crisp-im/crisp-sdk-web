@@ -129,7 +129,7 @@ class Crisp {
       this.autoload = options.autoload;
     }
 
-    // Autoload Crisp is option is enavled
+    // Autoload Crisp if option is enabled
     if (this.autoload) {
       this.load();
     }
@@ -306,4 +306,4 @@ const singleton = new Crisp();
 export {
   singleton as Crisp,
   Crisp as CrispClass
-}
+};

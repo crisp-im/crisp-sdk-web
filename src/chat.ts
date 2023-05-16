@@ -1,4 +1,4 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
 export default class CrispChat {
   private parent: Crisp;

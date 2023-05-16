@@ -1,5 +1,5 @@
 import dts from "rollup-plugin-dts";
-import typescript from '@rollup/plugin-typescript';
+import typescript from "@rollup/plugin-typescript";
 
 const bundle = config => ({
   ...config,
@@ -28,7 +28,7 @@ export default [
     plugins: [dts()],
     output: {
       file: "dist/crisp.d.ts",
-      format: 'es',
+      format: "es",
     },
   }),
 ]

@@ -1,4 +1,4 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
 export default class CrispTrigger {
   private parent: Crisp;

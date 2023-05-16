@@ -1,5 +1,4 @@
-
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
 export type FileMessage = {
   url: string,
