@@ -69,7 +69,7 @@ export default class CrispChat {
     window.$crisp.push(["on", "chat:opened", callback]);
   }
 
-  onChatClose(callback: () => void) {
+  onChatClosed(callback: () => void) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "chat:closed"]);
