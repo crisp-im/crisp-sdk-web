@@ -117,6 +117,7 @@ class Crisp {
     this.locale = options.locale;
     this.sessionMerge = options.sessionMerge;
     this.cookieDomain = options.cookieDomain;
+    this.cookieExpire = options.cookieExpire;
     this.lockFullview = options.lockFullview;
     this.lockMaximized = options.lockMaximized;
     this.safeMode = options.safeMode;
