@@ -1,6 +1,6 @@
 {
   "name": "crisp-sdk-web",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Include Crisp chat widget inside web frameworks.",
   "keywords": [
     "crisp",
