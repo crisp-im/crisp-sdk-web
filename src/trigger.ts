@@ -1,6 +1,6 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
-class CrispTrigger {
+export default class CrispTrigger {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -13,5 +13,3 @@ class CrispTrigger {
     window.$crisp.push(["do", "trigger:run", [name]]);
   }
 }
-
-export default CrispTrigger;

@@ -1,6 +1,6 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
-enum EventsColors {
+export enum EventsColors {
   Red = "red",
   Orange = "orange",
   Yellow = "yellow",
@@ -13,7 +13,7 @@ enum EventsColors {
   Black = "black"
 }
 
-class CrispSession {
+export default class CrispSession {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -83,10 +83,4 @@ class CrispSession {
       typeof value === "boolean"
     );
   }
-}
-
-export default CrispSession;
-
-export type {
-  EventsColors
 }

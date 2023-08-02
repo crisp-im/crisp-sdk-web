@@ -1,60 +1,58 @@
+import { CrispClass as Crisp } from "./index";
 
-import {CrispClass as Crisp} from "./index";
-
-type FileMessage = {
+export type FileMessage = {
   url: string,
   type: string,
   name: string
 };
 
-type AnimationMessage = {
+export type AnimationMessage = {
   url: string,
   type: string
 };
 
-type AudioMessage = {
+export type AudioMessage = {
   url: string,
   type: string,
   duration: number
 };
 
-type PickerMessage = {
+export type PickerMessage = {
   id: string,
   text: string,
   choices: PickerMessageChoices[]
 };
 
-type PickerMessageChoices = {
+export type PickerMessageChoices = {
   value: string,
   label: string,
   selected: boolean
 };
 
-type FieldMessage = {
+export type FieldMessage = {
   id: string,
   text: string,
   explain: string
 };
 
-type CarouselMessageTargets = {
+export type CarouselMessageTargets = {
   title: string,
-  label: string,
-  description: boolean,
+  description?: string,
   image?: string
   actions: CarouselMessageTargetsActions[]
 };
 
-type CarouselMessageTargetsActions = {
+export type CarouselMessageTargetsActions = {
   label: string,
   url: string
 };
 
-type CarouselMessage = {
+export type CarouselMessage = {
   text: string,
   targets: CarouselMessageTargets[]
 };
 
-class CrispMessage {
+export default class CrispMessage {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -150,15 +148,4 @@ class CrispMessage {
     window.$crisp.push(["off", "message:compose:received"]);
     window.$crisp.push(["on", "message:compose:received", callback]);
   }
-}
-
-export default CrispMessage;
-
-export type {
-  FileMessage,
-  AnimationMessage,
-  AudioMessage,
-  PickerMessage,
-  PickerMessageChoices,
-  FieldMessage
 }

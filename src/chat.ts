@@ -1,6 +1,6 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
-class CrispChat {
+export default class CrispChat {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -69,12 +69,10 @@ class CrispChat {
     window.$crisp.push(["on", "chat:opened", callback]);
   }
 
-  onChatClose(callback: () => void) {
+  onChatClosed(callback: () => void) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "chat:closed"]);
     window.$crisp.push(["on", "chat:closed", callback]);
   }
 }
-
-export default CrispChat;

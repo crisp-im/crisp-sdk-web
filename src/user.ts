@@ -1,23 +1,23 @@
-import {CrispClass as Crisp} from "./index";
+import { CrispClass as Crisp } from "./index";
 
-type CompanyData = {
+export type CompanyData = {
   url?: string,
   description?: string,
   employment?: CompanyDataEmployment | string[],
   geolocation?: CompanyDataGeolocation | string[]
 };
 
-type CompanyDataEmployment = {
+export type CompanyDataEmployment = {
   title: string,
   role?: string
 };
 
-type CompanyDataGeolocation = {
+export type CompanyDataGeolocation = {
   country: string,
   city?: string
 };
 
-class CrispUser {
+export default class CrispUser {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
@@ -64,7 +64,7 @@ class CrispUser {
         (data.employment as CompanyDataEmployment).title
       ];
 
-      if ((data.employment as CompanyDataEmployment).role ) {
+      if ((data.employment as CompanyDataEmployment).role) {
         _payload.employment.push((data.employment as CompanyDataEmployment).role!);
       }
     }
@@ -90,7 +90,7 @@ class CrispUser {
     return window.$crisp.get("user:phone");
   }
 
-  getNickname(): string | null{
+  getNickname(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
     }
@@ -141,12 +141,4 @@ class CrispUser {
       window.$crisp.push(["on", "user:avatar:changed", callback]);
     }
   }
-}
-
-export default CrispUser;
-
-export type {
-  CompanyData,
-  CompanyDataEmployment,
-  CompanyDataGeolocation
 }
