@@ -121,6 +121,18 @@ export default class CrispMessage {
     window.$crisp.push(["do", "message:read"]);
   }
 
+  startThread(name: String) {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["do", "message:thread:start", [name]]);
+  }
+
+  endThread(name?: String) {
+    this.parent.createSingletonIfNecessary();
+    
+    window.$crisp.push(["do", "message:thread:end", [name]]);
+  }
+
   onMessageSent(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
@@ -142,7 +154,7 @@ export default class CrispMessage {
     window.$crisp.push(["on", "message:compose:sent", callback]);
   }
 
-  onMessageComposeReceive(callback: Function) {
+  onMessageComposeReceived(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "message:compose:received"]);

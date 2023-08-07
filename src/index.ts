@@ -272,6 +272,13 @@ class Crisp {
     window.$crisp.push(["config", "show:operator:count", [enabled]]);
   }
 
+  onWebsiteAvailabilityChanged(callback: Function) {
+    this.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "website:availability:changed"]);
+    window.$crisp.push(["on", "website:availability:changed", callback]);
+  }
+
   createSingletonIfNecessary() {
     // Assigns $crisp singleton
     if (window.$crisp === undefined) {
@@ -279,7 +286,7 @@ class Crisp {
     }
   }
 
-  autoInjectIfNecessasy() {
+  autoInjectIfNecessary() {
     if (!this.isCrispInjected()) {
       this.load();
     }
