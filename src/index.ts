@@ -199,7 +199,7 @@ class Crisp {
     this.injected = true;
   }
 
-  setTokenId(tokenId: string) {
+  setTokenId(tokenId?: string) {
     this.tokenId = tokenId;
 
     // Refresh injected token?
