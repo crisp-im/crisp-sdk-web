@@ -272,8 +272,13 @@ class Crisp {
     window.$crisp.push(["config", "show:operator:count", [enabled]]);
   }
 
-  onWebsiteAvailabilityChanged(callback: Function) {
+  onWebsiteAvailabilityChanged(callback?: Function) {
     this.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "website:availability:changed"]);
+      return;
+    }
 
     window.$crisp.push(["off", "website:availability:changed"]);
     window.$crisp.push(["on", "website:availability:changed", callback]);

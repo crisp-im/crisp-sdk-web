@@ -73,29 +73,49 @@ export default class CrispChat {
     return window.$crisp.is("chat:visible");
   }
 
-  onChatInitiated(callback: () => void) {
+  onChatInitiated(callback?: () => void) {
     this.parent.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "chat:initiated"]);
+      return;
+    }
 
     window.$crisp.push(["off", "chat:initiated"]);
     window.$crisp.push(["on", "chat:initiated", callback]);
   }
 
-  onChatOpened(callback: () => void) {
+  onChatOpened(callback?: () => void) {
     this.parent.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "chat:opened"]);
+      return;
+    }
 
     window.$crisp.push(["off", "chat:opened"]);
     window.$crisp.push(["on", "chat:opened", callback]);
   }
 
-  onChatClosed(callback: () => void) {
+  onChatClosed(callback?: () => void) {
     this.parent.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "chat:closed"]);
+      return;
+    }
 
     window.$crisp.push(["off", "chat:closed"]);
     window.$crisp.push(["on", "chat:closed", callback]);
   }
 
-  onHelpdeskQueried(callback: Function) {
+  onHelpdeskQueried(callback?: Function) {
     this.parent.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "helpdesk:queried"]);
+      return;
+    }
 
     window.$crisp.push(["off", "helpdesk:queried"]);
     window.$crisp.push(["on", "helpdesk:queried", callback]);
