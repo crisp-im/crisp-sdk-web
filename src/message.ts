@@ -59,6 +59,12 @@ export default class CrispMessage {
     this.parent = crisp;
   }
 
+  fillText(content: string) {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["set", "message:text", [content]]);
+  }
+
   send(type: string, content: string | FileMessage | AnimationMessage | AudioMessage) {
     this.parent.createSingletonIfNecessary();
 

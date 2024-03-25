@@ -22,7 +22,7 @@ export default class CrispSession {
 
   reset(reload = false) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.do("session:reset", [reload]);
+      window.$crisp.push(["do", "session:reset", [reload]]);
     }
   }
 
@@ -69,8 +69,13 @@ export default class CrispSession {
   }
 
 
-  onLoaded(callback: Function) {
+  onLoaded(callback?: Function) {
     this.parent.createSingletonIfNecessary();
+
+    if (!callback) {
+      window.$crisp.push(["off", "session:loaded"]);
+      return;
+    }
 
     window.$crisp.push(["off", "session:loaded"]);
     window.$crisp.push(["on", "session:loaded", callback]);
