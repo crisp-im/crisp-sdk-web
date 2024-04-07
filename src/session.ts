@@ -22,7 +22,7 @@ export default class CrispSession {
 
   reset(reload = false) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.do("session:reset", [reload]);
+      window.$crisp.push(["do", "session:reset", [reload]]);
     }
   }
 
@@ -68,12 +68,17 @@ export default class CrispSession {
     return window.$crisp.get("session:identifier");
   }
 
-
   onLoaded(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "session:loaded"]);
+    this.offLoaded();
     window.$crisp.push(["on", "session:loaded", callback]);
+  }
+
+  offLoaded() {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "session:loaded"]);
   }
 
   private isValidDataValue(value: string): boolean {
