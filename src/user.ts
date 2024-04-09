@@ -116,29 +116,57 @@ export default class CrispUser {
 
   onEmailChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push(["off", "user:email:changed"]);
+      this.offEmailChanged();
+      
       window.$crisp.push(["on", "user:email:changed", callback]);
+    }
+  }
+
+  offEmailChanged() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push(["off", "user:email:changed"]);
     }
   }
 
   onPhoneChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push(["off", "user:phone:changed"]);
+      this.offPhoneChanged();
+
       window.$crisp.push(["on", "user:phone:changed", callback]);
+    }
+  }
+
+  offPhoneChanged() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push(["off", "user:phone:changed"]);
     }
   }
 
   onNicknameChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push(["off", "user:nickname:changed"]);
+      this.offNicknameChanged();
+
       window.$crisp.push(["on", "user:nickname:changed", callback]);
+    }
+  }
+
+  offNicknameChanged() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push(["off", "user:nickname:changed"]);
     }
   }
 
   onAvatarChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
-      window.$crisp.push(["off", "user:avatar:changed"]);
+      this.offAvatarChanged();
+
       window.$crisp.push(["on", "user:avatar:changed", callback]);
+    }
+  }
+
+  offAvatarChanged() {
+    if (this.parent.isCrispInjected()) {
+      window.$crisp.push(["off", "user:avatar:changed"]);
     }
   }
 }

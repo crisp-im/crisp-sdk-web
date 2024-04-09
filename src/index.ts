@@ -275,8 +275,15 @@ class Crisp {
   onWebsiteAvailabilityChanged(callback: Function) {
     this.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "website:availability:changed"]);
+    this.offWebsiteAvailabilityChanged();
+    
     window.$crisp.push(["on", "website:availability:changed", callback]);
+  }
+
+  offWebsiteAvailabilityChanged() {
+    this.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "website:availability:changed"]);
   }
 
   createSingletonIfNecessary() {
