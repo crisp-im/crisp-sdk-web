@@ -77,6 +77,7 @@ export default class CrispChat {
     this.parent.createSingletonIfNecessary();
 
     this.offChatInitiated();
+
     window.$crisp.push(["on", "chat:initiated", callback]);
   }
 
@@ -90,6 +91,7 @@ export default class CrispChat {
     this.parent.createSingletonIfNecessary();
 
     this.offChatOpened();
+
     window.$crisp.push(["on", "chat:opened", callback]);
   }
 
@@ -103,6 +105,7 @@ export default class CrispChat {
     this.parent.createSingletonIfNecessary();
 
     this.offChatClosed();
+
     window.$crisp.push(["on", "chat:closed", callback]);
   }
 
@@ -116,6 +119,7 @@ export default class CrispChat {
     this.parent.createSingletonIfNecessary();
 
     this.offHelpdeskQueried();
+    
     window.$crisp.push(["on", "helpdesk:queried", callback]);
   }
 

@@ -143,6 +143,7 @@ export default class CrispMessage {
     this.parent.createSingletonIfNecessary();
 
     this.offMessageSent();
+    
     window.$crisp.push(["on", "message:sent", callback]);
   }
 
@@ -156,6 +157,7 @@ export default class CrispMessage {
     this.parent.createSingletonIfNecessary();
 
     this.offMessageReceived();
+
     window.$crisp.push(["on", "message:received", callback]);
   }
 
@@ -169,6 +171,7 @@ export default class CrispMessage {
     this.parent.createSingletonIfNecessary();
 
     this.offMessageComposeSent();
+
     window.$crisp.push(["on", "message:compose:sent", callback]);
   }
 
@@ -182,6 +185,7 @@ export default class CrispMessage {
     this.parent.createSingletonIfNecessary();
 
     this.offMessageComposeReceived();
+
     window.$crisp.push(["on", "message:compose:received", callback]);
   }
 

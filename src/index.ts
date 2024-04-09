@@ -276,6 +276,7 @@ class Crisp {
     this.createSingletonIfNecessary();
 
     this.offWebsiteAvailabilityChanged();
+    
     window.$crisp.push(["on", "website:availability:changed", callback]);
   }
 

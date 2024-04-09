@@ -72,6 +72,7 @@ export default class CrispSession {
     this.parent.createSingletonIfNecessary();
 
     this.offLoaded();
+    
     window.$crisp.push(["on", "session:loaded", callback]);
   }
 

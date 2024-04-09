@@ -117,6 +117,7 @@ export default class CrispUser {
   onEmailChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       this.offEmailChanged();
+      
       window.$crisp.push(["on", "user:email:changed", callback]);
     }
   }
@@ -130,6 +131,7 @@ export default class CrispUser {
   onPhoneChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       this.offPhoneChanged();
+
       window.$crisp.push(["on", "user:phone:changed", callback]);
     }
   }
@@ -143,6 +145,7 @@ export default class CrispUser {
   onNicknameChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       this.offNicknameChanged();
+
       window.$crisp.push(["on", "user:nickname:changed", callback]);
     }
   }
@@ -156,6 +159,7 @@ export default class CrispUser {
   onAvatarChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       this.offAvatarChanged();
+
       window.$crisp.push(["on", "user:avatar:changed", callback]);
     }
   }
