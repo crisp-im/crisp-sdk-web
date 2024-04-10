@@ -59,7 +59,7 @@ export default class CrispMessage {
     this.parent = crisp;
   }
 
-  fillText(content: string) {
+  setMessageText(content: string) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["set", "message:text", [content]]);
