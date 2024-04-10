@@ -51,23 +51,25 @@ export default class CrispUser {
   setCompany(name: string, data: CompanyData) {
     const _payload: CompanyData = {};
 
-    if (data && data.url) {
-      _payload.url = data.url;
-    }
+    if (data) {
+      if (data.url) {
+        _payload.url = data.url;
+      }
 
-    if (data && data.description) {
-      _payload.description = data.description;
-    }
+      if (data.description) {
+        _payload.description = data.description;
+      }
 
-    if (data && data.employment) {
-      _payload.employment = [
-        (data.employment as CompanyDataEmployment).title
-      ];
+      if (data.employment) {
+        _payload.employment = [
+          (data.employment as CompanyDataEmployment).title
+        ];
 
-      if ((data.employment as CompanyDataEmployment).role) {
-        _payload.employment.push(
-          (data.employment as CompanyDataEmployment).role!
-        );
+        if ((data.employment as CompanyDataEmployment).role) {
+          _payload.employment.push(
+            (data.employment as CompanyDataEmployment).role!
+          );
+        }
       }
     }
 

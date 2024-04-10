@@ -22,7 +22,7 @@ import CrispTrigger from "./trigger";
 import CrispSession from "./session";
 
 export {
-  EventsColors,
+  EventsColors
 } from "./session";
 
 import CrispChat from "./chat";
@@ -34,7 +34,7 @@ declare global {
   var CRISP_TOKEN_ID: string;
   var CRISP_RUNTIME_CONFIG: any;
   var CRISP_COOKIE_DOMAIN: string;
-  var CRISP_COOKIE_EXPIRE: number
+  var CRISP_COOKIE_EXPIRE: number;
 }
 /* eslint-enable no-var, @typescript-eslint/no-explicit-any */
 
@@ -104,9 +104,9 @@ class Crisp {
   trigger: CrispTrigger;
 
   constructor() {
-    this.chat = new CrispChat(this);
+    this.chat    = new CrispChat(this);
     this.session = new CrispSession(this);
-    this.user = new CrispUser(this);
+    this.user    = new CrispUser(this);
     this.message = new CrispMessage(this);
     this.trigger = new CrispTrigger(this);
   }
