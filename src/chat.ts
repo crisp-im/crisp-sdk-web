@@ -37,10 +37,20 @@ export default class CrispChat {
     window.$crisp.push(["do", "helpdesk:search"]);
   }
 
-  openHelpdeskArticle(locale: string, slug: string, title?: string, category?: string) {
+  openHelpdeskArticle(
+    locale: string,
+    slug: string,
+    title?: string,
+    category?: string
+  ) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["do", "helpdesk:article:open", [locale, slug, title, category]]);
+    window.$crisp.push(["do", "helpdesk:article:open", [
+      locale,
+      slug,
+      title,
+      category
+    ]]);
   }
 
   queryHelpdesk(query: string) {
@@ -119,7 +129,7 @@ export default class CrispChat {
     this.parent.createSingletonIfNecessary();
 
     this.offHelpdeskQueried();
-    
+
     window.$crisp.push(["on", "helpdesk:queried", callback]);
   }
 

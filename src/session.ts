@@ -46,7 +46,11 @@ export default class CrispSession {
     $crisp.push(["set", "session:data", [_payload]]);
   }
 
-  pushEvent(name: string, data: object = {}, color: EventsColors = EventsColors.Blue) {
+  pushEvent(
+    name: string,
+    data: object = {},
+    color: EventsColors = EventsColors.Blue
+  ) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["set", "session:event", [[[name, data, color]]]]);
     }
@@ -72,7 +76,7 @@ export default class CrispSession {
     this.parent.createSingletonIfNecessary();
 
     this.offLoaded();
-    
+
     window.$crisp.push(["on", "session:loaded", callback]);
   }
 

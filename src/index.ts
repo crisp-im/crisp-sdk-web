@@ -239,7 +239,9 @@ class Crisp {
   setPosition(position: ChatboxPosition) {
     this.createSingletonIfNecessary();
 
-    $crisp.push(["config", "position:reverse", [position === ChatboxPosition.Left]]);
+    $crisp.push(["config", "position:reverse", [
+      position === ChatboxPosition.Left
+    ]]);
   }
 
   setAvailabilityTooltip(enabled: boolean) {
@@ -276,7 +278,7 @@ class Crisp {
     this.createSingletonIfNecessary();
 
     this.offWebsiteAvailabilityChanged();
-    
+
     window.$crisp.push(["on", "website:availability:changed", callback]);
   }
 

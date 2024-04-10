@@ -65,7 +65,10 @@ export default class CrispMessage {
     window.$crisp.push(["set", "message:text", [content]]);
   }
 
-  send(type: string, content: string | FileMessage | AnimationMessage | AudioMessage) {
+  send(
+    type: string,
+    content: string | FileMessage | AnimationMessage | AudioMessage
+  ) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["do", "message:send", [type, content]]);
@@ -87,7 +90,10 @@ export default class CrispMessage {
     this.send("audio", content);
   }
 
-  show(type: string, content: string | FileMessage | AnimationMessage | AudioMessage | FieldMessage | PickerMessage | CarouselMessage) {
+  show(
+    type: string,
+    content: string | FileMessage | AnimationMessage | AudioMessage | FieldMessage | PickerMessage | CarouselMessage
+  ) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["do", "message:show", [type, content]]);
@@ -135,7 +141,7 @@ export default class CrispMessage {
 
   endThread(name?: String) {
     this.parent.createSingletonIfNecessary();
-    
+
     window.$crisp.push(["do", "message:thread:end", [name]]);
   }
 
@@ -143,7 +149,7 @@ export default class CrispMessage {
     this.parent.createSingletonIfNecessary();
 
     this.offMessageSent();
-    
+
     window.$crisp.push(["on", "message:sent", callback]);
   }
 

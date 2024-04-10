@@ -65,7 +65,9 @@ export default class CrispUser {
       ];
 
       if ((data.employment as CompanyDataEmployment).role) {
-        _payload.employment.push((data.employment as CompanyDataEmployment).role!);
+        _payload.employment.push(
+          (data.employment as CompanyDataEmployment).role!
+        );
       }
     }
 
@@ -117,7 +119,7 @@ export default class CrispUser {
   onEmailChanged(callback: Function) {
     if (this.parent.isCrispInjected()) {
       this.offEmailChanged();
-      
+
       window.$crisp.push(["on", "user:email:changed", callback]);
     }
   }
