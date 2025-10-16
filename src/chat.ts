@@ -37,10 +37,20 @@ export default class CrispChat {
     window.$crisp.push(["do", "helpdesk:search"]);
   }
 
-  openHelpdeskArticle(locale: string, slug: string, title?: string, category?: string) {
+  openHelpdeskArticle(
+    locale: string,
+    slug: string,
+    title?: string,
+    category?: string
+  ) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["do", "helpdesk:article:open", [locale, slug, title, category]]);
+    window.$crisp.push(["do", "helpdesk:article:open", [
+      locale,
+      slug,
+      title,
+      category
+    ]]);
   }
 
   queryHelpdesk(query: string) {
@@ -76,28 +86,56 @@ export default class CrispChat {
   onChatInitiated(callback: () => void) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "chat:initiated"]);
+    this.offChatInitiated();
+
     window.$crisp.push(["on", "chat:initiated", callback]);
+  }
+
+  offChatInitiated() {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "chat:initiated"]);
   }
 
   onChatOpened(callback: () => void) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "chat:opened"]);
+    this.offChatOpened();
+
     window.$crisp.push(["on", "chat:opened", callback]);
+  }
+
+  offChatOpened() {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "chat:opened"]);
   }
 
   onChatClosed(callback: () => void) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "chat:closed"]);
+    this.offChatClosed();
+
     window.$crisp.push(["on", "chat:closed", callback]);
+  }
+
+  offChatClosed() {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "chat:closed"]);
   }
 
   onHelpdeskQueried(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
-    window.$crisp.push(["off", "helpdesk:queried"]);
+    this.offHelpdeskQueried();
+
     window.$crisp.push(["on", "helpdesk:queried", callback]);
+  }
+
+  offHelpdeskQueried() {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["off", "helpdesk:queried"]);
   }
 }
