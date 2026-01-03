@@ -36,7 +36,7 @@ export default class CrispSession {
     const _payload = [];
 
     Object.entries(data).forEach(item => {
-      if (this.isValidDataValue(item[0])) {
+      if (this.isValidDataValue(item[1])) {
         _payload.push([item[0], item[1]]);
       }
     });
