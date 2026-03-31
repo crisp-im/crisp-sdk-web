@@ -31,6 +31,12 @@ export default class CrispChat {
     }
   }
 
+  setOverlayView(callback: () => void) {
+    this.parent.createSingletonIfNecessary();
+
+    window.$crisp.push(["do", "overlay:open", [callback]]);
+  }
+
   setHelpdeskView() {
     this.parent.createSingletonIfNecessary();
 
