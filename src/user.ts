@@ -3,13 +3,13 @@ import { CrispClass as Crisp } from "./index";
 export type CompanyData = {
   url?: string,
   description?: string,
-  employment?: CompanyDataEmployment | string[],
-  geolocation?: CompanyDataGeolocation | string[]
+  employment?: CompanyDataEmployment,
+  geolocation?: CompanyDataGeolocation
 };
 
 export type CompanyDataEmployment = {
   title: string,
-  role?: string
+  role: string
 };
 
 export type CompanyDataGeolocation = {
@@ -48,35 +48,45 @@ export default class CrispUser {
     window.$crisp.push(["set", "user:avatar", [avatar]]);
   }
 
-  setCompany(name: string, data: CompanyData) {
-    const _payload: CompanyData = {};
+  setCompany(name: string, data?: CompanyData) {
+  const _payload: {
+    url?: string,
+    description?: string,
+    employment?: string[],
+    geolocation?: string[]
+  } = {};
 
-    if (data) {
-      if (data.url) {
-        _payload.url = data.url;
-      }
-
-      if (data.description) {
-        _payload.description = data.description;
-      }
-
-      if (data.employment) {
-        _payload.employment = [
-          (data.employment as CompanyDataEmployment).title
-        ];
-
-        if ((data.employment as CompanyDataEmployment).role) {
-          _payload.employment.push(
-            (data.employment as CompanyDataEmployment).role!
-          );
-        }
-      }
-    }
-
-    this.parent.createSingletonIfNecessary();
-
-    window.$crisp.push(["set", "user:company", [name, _payload]]);
+  if (data?.url) {
+    _payload.url = data.url;
   }
+
+  if (data?.description) {
+    _payload.description = data.description;
+  }
+
+  if (data?.employment) {
+    _payload.employment = [
+      data.employment.title,
+      data.employment.role
+    ];
+  }
+
+  if (data?.geolocation) {
+    _payload.geolocation = [data.geolocation.country];
+
+    if (data.geolocation.city) {
+      _payload.geolocation.push(data.geolocation.city);
+    }
+  }
+
+  this.parent.createSingletonIfNecessary();
+
+  if (Object.keys(_payload).length > 0) {
+    window.$crisp.push(["set", "user:company", [name, _payload]]);
+  } else {
+    window.$crisp.push(["set", "user:company", [name]]);
+  }
+}
 
   getEmail(): string | null {
     if (!this.parent.isCrispInjected()) {
