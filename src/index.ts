@@ -19,6 +19,8 @@ export {
 
 import CrispTrigger from "./trigger";
 
+import CrispScenario from "./scenario";
+
 import CrispSession from "./session";
 
 export {
@@ -102,6 +104,7 @@ class Crisp {
   user: CrispUser;
   message: CrispMessage;
   trigger: CrispTrigger;
+  scenario: CrispScenario;
 
   constructor() {
     this.chat    = new CrispChat(this);
@@ -109,6 +112,7 @@ class Crisp {
     this.user    = new CrispUser(this);
     this.message = new CrispMessage(this);
     this.trigger = new CrispTrigger(this);
+    this.scenario = new CrispScenario(this);
   }
 
   configure(websiteId: string, options: Options = {}) {
