@@ -49,44 +49,44 @@ export default class CrispUser {
   }
 
   setCompany(name: string, data?: CompanyData) {
-  const _payload: {
-    url?: string,
-    description?: string,
-    employment?: string[],
-    geolocation?: string[]
-  } = {};
+    const _payload: {
+      url?: string,
+      description?: string,
+      employment?: string[],
+      geolocation?: string[]
+    } = {};
 
-  if (data?.url) {
-    _payload.url = data.url;
-  }
+    if (data?.url) {
+      _payload.url = data.url;
+    }
 
-  if (data?.description) {
-    _payload.description = data.description;
-  }
+    if (data?.description) {
+      _payload.description = data.description;
+    }
 
-  if (data?.employment) {
-    _payload.employment = [
-      data.employment.title,
-      data.employment.role
-    ];
-  }
+    if (data?.employment) {
+      _payload.employment = [
+        data.employment.title,
+        data.employment.role
+      ];
+    }
 
-  if (data?.geolocation) {
-    _payload.geolocation = [data.geolocation.country];
+    if (data?.geolocation) {
+      _payload.geolocation = [data.geolocation.country];
 
-    if (data.geolocation.city) {
-      _payload.geolocation.push(data.geolocation.city);
+      if (data.geolocation.city) {
+        _payload.geolocation.push(data.geolocation.city);
+      }
+    }
+
+    this.parent.createSingletonIfNecessary();
+
+    if (Object.keys(_payload).length > 0) {
+      window.$crisp.push(["set", "user:company", [name, _payload]]);
+    } else {
+      window.$crisp.push(["set", "user:company", [name]]);
     }
   }
-
-  this.parent.createSingletonIfNecessary();
-
-  if (Object.keys(_payload).length > 0) {
-    window.$crisp.push(["set", "user:company", [name, _payload]]);
-  } else {
-    window.$crisp.push(["set", "user:company", [name]]);
-  }
-}
 
   getEmail(): string | null {
     if (!this.parent.isCrispInjected()) {
