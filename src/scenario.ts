@@ -1,6 +1,6 @@
 import { CrispClass as Crisp } from "./index";
 
-export default class CrispWorkflow {
+export default class CrispScenario {
   private parent: Crisp;
 
   constructor(crisp: Crisp) {
