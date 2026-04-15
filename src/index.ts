@@ -1,3 +1,15 @@
+/*
+ * This file is part of crisp-sdk-web
+ *
+ * Copyright (c) 2025 Crisp IM SAS
+ * All rights belong to Crisp IM SAS
+ */
+
+/**************************************************************************
+ * IMPORTS
+ ***************************************************************************/
+
+// PROJECT: MAIN
 import CrispMessage from "./message";
 
 export {
@@ -18,9 +30,7 @@ export {
 } from "./user";
 
 import CrispTrigger from "./trigger";
-
 import CrispScenario from "./scenario";
-
 import CrispSession from "./session";
 
 export {
@@ -29,7 +39,10 @@ export {
 
 import CrispChat from "./chat";
 
-/* eslint-disable no-var, @typescript-eslint/no-explicit-any */
+/**************************************************************************
+ * TYPES
+ ***************************************************************************/
+
 declare global {
   var $crisp: any;
   var CRISP_WEBSITE_ID: string;
@@ -38,8 +51,7 @@ declare global {
   var CRISP_COOKIE_DOMAIN: string;
   var CRISP_COOKIE_EXPIRE: number;
 }
-/* eslint-enable no-var, @typescript-eslint/no-explicit-any */
-
+/* eslint-enable no-var, no-unused-vars, @typescript-eslint/no-explicit-any, crisp/no-snake-case */
 
 export type Options = {
   clientUrl?: string
@@ -53,6 +65,10 @@ export type Options = {
   lockFullview?: boolean
   safeMode?: boolean
 };
+
+/**************************************************************************
+ * ENUMERATIONS
+ ***************************************************************************/
 
 export enum ChatboxColors {
   Default = "default",
@@ -73,13 +89,17 @@ export enum ChatboxColors {
   Purple = "purple",
   DeepPurple = "deep_purple",
   Red = "red",
-  Teal = "teal",
+  Teal = "teal"
 }
 
 export enum ChatboxPosition {
   Left = "left",
-  Right = "right",
+  Right = "right"
 }
+
+/**************************************************************************
+ * CLASS
+ ***************************************************************************/
 
 class Crisp {
   // Options
@@ -107,9 +127,9 @@ class Crisp {
   scenario: CrispScenario;
 
   constructor() {
-    this.chat    = new CrispChat(this);
+    this.chat = new CrispChat(this);
     this.session = new CrispSession(this);
-    this.user    = new CrispUser(this);
+    this.user = new CrispUser(this);
     this.message = new CrispMessage(this);
     this.trigger = new CrispTrigger(this);
     this.scenario = new CrispScenario(this);
@@ -141,7 +161,7 @@ class Crisp {
   }
 
   load() {
-    const _head = document.getElementsByTagName("head");
+    const head = document.getElementsByTagName("head");
 
     this.createSingletonIfNecessary();
 
@@ -185,7 +205,7 @@ class Crisp {
       window.CRISP_COOKIE_EXPIRE = this.cookieExpire;
     }
 
-    if (!_head || !_head[0]) {
+    if (!head || !head[0]) {
       return this.deferredLoading();
     }
 
@@ -193,12 +213,12 @@ class Crisp {
       this.setSafeMode(true);
     }
 
-    const _script = document.createElement("script");
+    const script = document.createElement("script");
 
-    _script.src = this.clientUrl;
-    _script.async = true;
+    script.src = this.clientUrl;
+    script.async = true;
 
-    _head[0].appendChild(_script);
+    head[0].appendChild(script);
 
     this.injected = true;
   }
@@ -243,7 +263,7 @@ class Crisp {
   setPosition(position: ChatboxPosition) {
     this.createSingletonIfNecessary();
 
-    $crisp.push(["config", "position:reverse", [
+    window.$crisp.push(["config", "position:reverse", [
       position === ChatboxPosition.Left
     ]]);
   }
@@ -308,7 +328,7 @@ class Crisp {
   isCrispInjected(): boolean {
     // Check if Crisp was injected (either from the Web SDK, or from another \
     //   source)
-    if (this.injected === true || (window.$crisp && window.$crisp.is)) {
+    if (this.injected === true || window.$crisp?.is) {
       return true;
     }
 
@@ -321,6 +341,10 @@ class Crisp {
     });
   }
 }
+
+/**************************************************************************
+ * EXPORTS
+ ***************************************************************************/
 
 const singleton = new Crisp();
 

@@ -1,4 +1,20 @@
+/*
+ * This file is part of crisp-sdk-web
+ *
+ * Copyright (c) 2025 Crisp IM SAS
+ * All rights belong to Crisp IM SAS
+ */
+
+/**************************************************************************
+ * IMPORTS
+ ***************************************************************************/
+
+// PROJECT: MAIN
 import { CrispClass as Crisp } from "./index";
+
+/**************************************************************************
+ * ENUMERATIONS
+ ***************************************************************************/
 
 export enum EventsColors {
   Red = "red",
@@ -12,6 +28,10 @@ export enum EventsColors {
   Grey = "grey",
   Black = "black"
 }
+
+/**************************************************************************
+ * CLASS
+ ***************************************************************************/
 
 export default class CrispSession {
   private parent: Crisp;
@@ -29,21 +49,21 @@ export default class CrispSession {
   setSegments(segments: string[], overwrite = false) {
     this.parent.createSingletonIfNecessary();
 
-    $crisp.push(["set", "session:segments", [segments, overwrite]]);
+    window.$crisp.push(["set", "session:segments", [segments, overwrite]]);
   }
 
   setData(data: object) {
-    const _payload = [];
+    const payload: Array<[string, unknown]> = [];
 
-    Object.entries(data).forEach(item => {
+    Object.entries(data).forEach((item) => {
       if (this.isValidDataValue(item[1])) {
-        _payload.push([item[0], item[1]]);
+        payload.push([item[0], item[1]]);
       }
     });
 
     this.parent.createSingletonIfNecessary();
 
-    $crisp.push(["set", "session:data", [_payload]]);
+    window.$crisp.push(["set", "session:data", [payload]]);
   }
 
   pushEvent(
@@ -86,7 +106,7 @@ export default class CrispSession {
     window.$crisp.push(["off", "session:loaded"]);
   }
 
-  private isValidDataValue(value: string): boolean {
+  private isValidDataValue(value: unknown): boolean {
     return (
       typeof value === "string" ||
       typeof value === "number" ||

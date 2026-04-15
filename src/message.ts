@@ -1,4 +1,20 @@
+/*
+ * This file is part of crisp-sdk-web
+ *
+ * Copyright (c) 2025 Crisp IM SAS
+ * All rights belong to Crisp IM SAS
+ */
+
+/**************************************************************************
+ * IMPORTS
+ ***************************************************************************/
+
+// PROJECT: MAIN
 import { CrispClass as Crisp } from "./index";
+
+/**************************************************************************
+ * TYPES
+ ***************************************************************************/
 
 export type FileMessage = {
   url: string,
@@ -52,6 +68,10 @@ export type CarouselMessage = {
   targets: CarouselMessageTargets[]
 };
 
+/**************************************************************************
+ * CLASS
+ ***************************************************************************/
+
 export default class CrispMessage {
   private parent: Crisp;
 
@@ -92,7 +112,8 @@ export default class CrispMessage {
 
   show(
     type: string,
-    content: string | FileMessage | AnimationMessage | AudioMessage | FieldMessage | PickerMessage | CarouselMessage
+    content: string | FileMessage | AnimationMessage | AudioMessage |
+      FieldMessage | PickerMessage | CarouselMessage
   ) {
     this.parent.createSingletonIfNecessary();
 
@@ -133,13 +154,13 @@ export default class CrispMessage {
     window.$crisp.push(["do", "message:read"]);
   }
 
-  startThread(name: String) {
+  startThread(name: string) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["do", "message:thread:start", [name]]);
   }
 
-  endThread(name?: String) {
+  endThread(name?: string) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["do", "message:thread:end", [name]]);

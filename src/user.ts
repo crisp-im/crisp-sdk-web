@@ -1,4 +1,20 @@
+/*
+ * This file is part of crisp-sdk-web
+ *
+ * Copyright (c) 2025 Crisp IM SAS
+ * All rights belong to Crisp IM SAS
+ */
+
+/**************************************************************************
+ * IMPORTS
+ ***************************************************************************/
+
+// PROJECT: MAIN
 import { CrispClass as Crisp } from "./index";
+
+/**************************************************************************
+ * TYPES
+ ***************************************************************************/
 
 export type CompanyData = {
   url?: string,
@@ -16,6 +32,10 @@ export type CompanyDataGeolocation = {
   country: string,
   city?: string
 };
+
+/**************************************************************************
+ * CLASS
+ ***************************************************************************/
 
 export default class CrispUser {
   private parent: Crisp;
@@ -49,7 +69,7 @@ export default class CrispUser {
   }
 
   setCompany(name: string, data?: CompanyData) {
-    const _payload: {
+    const payload: {
       url?: string,
       description?: string,
       employment?: string[],
@@ -57,32 +77,32 @@ export default class CrispUser {
     } = {};
 
     if (data?.url) {
-      _payload.url = data.url;
+      payload.url = data.url;
     }
 
     if (data?.description) {
-      _payload.description = data.description;
+      payload.description = data.description;
     }
 
     if (data?.employment) {
-      _payload.employment = [
+      payload.employment = [
         data.employment.title,
         data.employment.role
       ];
     }
 
     if (data?.geolocation) {
-      _payload.geolocation = [data.geolocation.country];
+      payload.geolocation = [data.geolocation.country];
 
       if (data.geolocation.city) {
-        _payload.geolocation.push(data.geolocation.city);
+        payload.geolocation.push(data.geolocation.city);
       }
     }
 
     this.parent.createSingletonIfNecessary();
 
-    if (Object.keys(_payload).length > 0) {
-      window.$crisp.push(["set", "user:company", [name, _payload]]);
+    if (Object.keys(payload).length > 0) {
+      window.$crisp.push(["set", "user:company", [name, payload]]);
     } else {
       window.$crisp.push(["set", "user:company", [name]]);
     }
