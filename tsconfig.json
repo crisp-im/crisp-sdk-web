@@ -4,7 +4,7 @@
     "downlevelIteration": true,
     "inlineSources": true,
     "importHelpers": true,
-    "lib": ["es5", "dom"],
+    "lib": ["es5", "es2017", "dom"],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmitHelpers": true,
