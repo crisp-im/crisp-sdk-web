@@ -1,6 +1,7 @@
 {
   "name": "crisp-sdk-web",
   "version": "1.0.29",
+  "type": "module",
   "description": "Include Crisp chat widget inside web frameworks.",
   "keywords": [
     "crisp",
@@ -11,7 +12,7 @@
   "license": "MIT",
   "main": "dist/crisp.umd.js",
   "module": "dist/crisp.esm.js",
-  "types": "dist/crisp.d.ts",
+  "types": "dist/index.d.ts",
   "publishConfig": {
     "access": "public"
   },
@@ -22,10 +23,9 @@
   "scripts": {
     "build": "rm -r -f dist && rollup -c",
     "test": "npm run lint",
-    "lint": "eslint '{src,test}/**/*.ts'",
-    "lint:prettier": "prettier --check \"{src,test}/**/*.ts\"",
+    "lint": "eslint src --cache",
     "typecheck": "tsc -p ./tsconfig.json",
-    "version": "yarn version-file && GENERATE_SNIPPET=true yarn build",
+    "version": "npm run version-file && GENERATE_SNIPPET=true npm run build",
     "version-file": "node -p \"'export const VERSION = \\'' + require('./package.json').version + '\\';'\" > src/version.ts"
   },
   "bugs": {
@@ -33,15 +33,17 @@
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.4.0",
-    "@typescript-eslint/eslint-plugin": "^5.35.1",
-    "@typescript-eslint/parser": "^5.35.1",
-    "eslint": "^8.22.0",
-    "rollup": "^2.78.1",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-esbuild": "^4.9.3",
-    "rollup-plugin-terser": "^7.0.2",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.2"
+    "@typescript-eslint/eslint-plugin": "8.39.1",
+    "@typescript-eslint/parser": "8.39.1",
+    "eslint": "9.29.0",
+    "eslint-plugin-crisp": "1.2.12",
+    "eslint-plugin-jsdoc": "50.8.0",
+    "globals": "15.15.0",
+    "rollup": "2.78.1",
+    "rollup-plugin-esbuild": "4.9.3",
+    "rollup-plugin-terser": "7.0.2",
+    "tslib": "2.4.0",
+    "typescript": "5.9.3"
   },
   "files": [
     "src",
