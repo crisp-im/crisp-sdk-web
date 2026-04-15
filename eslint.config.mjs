@@ -15,6 +15,7 @@ import { defineConfig, globalIgnores } from "eslint/config";
 import crisp from "eslint-plugin-crisp";
 import tseslint from "@typescript-eslint/eslint-plugin";
 import tsparser from "@typescript-eslint/parser";
+import jsdoc from "eslint-plugin-jsdoc";
 
 /**************************************************************************
  * CONFIGURATION
@@ -34,7 +35,8 @@ export default defineConfig([
     },
     plugins: {
       crisp: crisp,
-      "@typescript-eslint": tseslint
+      "@typescript-eslint": tseslint,
+      jsdoc: jsdoc
     },
     rules: {
       "@typescript-eslint/no-explicit-any": "error",
@@ -172,7 +174,26 @@ export default defineConfig([
         }
       ],
       "crisp/regex-in-constructor": "error",
-      "crisp/ternary-parenthesis": "error"
+      "crisp/ternary-parenthesis": "error",
+
+      // JSDoc rules
+      "jsdoc/require-description": "error",
+      "jsdoc/require-param": "off",
+      "jsdoc/require-param-description": "off",
+      "jsdoc/require-property-description": "off",
+      "jsdoc/require-returns": "off",
+      "jsdoc/require-jsdoc": [
+        "error",
+        {
+          "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true,
+            "ArrowFunctionExpression": false,
+            "FunctionExpression": false
+          }
+        }
+      ]
     }
   },
 

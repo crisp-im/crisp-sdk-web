@@ -16,13 +16,22 @@ import { CrispClass as Crisp } from "./index";
  * CLASS
  ***************************************************************************/
 
+/**
+ * Crisp scenario management
+ */
 export default class CrispScenario {
   private parent: Crisp;
 
+  /**
+   * Constructor
+   */
   constructor(crisp: Crisp) {
     this.parent = crisp;
   }
 
+  /**
+   * Runs a bot scenario by name
+   */
   run(name: string) {
     this.parent.createSingletonIfNecessary();
 

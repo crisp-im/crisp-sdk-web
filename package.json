@@ -38,6 +38,7 @@
     "@typescript-eslint/parser": "8.39.1",
     "eslint": "9.29.0",
     "eslint-plugin-crisp": "1.2.12",
+    "eslint-plugin-jsdoc": "50.8.0",
     "globals": "15.15.0",
     "rollup": "^2.78.1",
     "rollup-plugin-esbuild": "^4.9.3",

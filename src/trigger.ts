@@ -16,13 +16,22 @@ import { CrispClass as Crisp } from "./index";
  * CLASS
  ***************************************************************************/
 
+/**
+ * Crisp trigger management
+ */
 export default class CrispTrigger {
   private parent: Crisp;
 
+  /**
+   * Constructor
+   */
   constructor(crisp: Crisp) {
     this.parent = crisp;
   }
 
+  /**
+   * Runs a trigger by name
+   */
   run(name: string) {
     this.parent.createSingletonIfNecessary();
 

@@ -16,6 +16,7 @@ import { CrispClass as Crisp } from "./index";
  * ENUMERATIONS
  ***************************************************************************/
 
+/* eslint-disable no-unused-vars */
 export enum EventsColors {
   Red = "red",
   Orange = "orange",
@@ -28,30 +29,46 @@ export enum EventsColors {
   Grey = "grey",
   Black = "black"
 }
+/* eslint-enable no-unused-vars */
 
 /**************************************************************************
  * CLASS
  ***************************************************************************/
 
+/**
+ * Crisp session management
+ */
 export default class CrispSession {
   private parent: Crisp;
 
+  /**
+   * Constructor
+   */
   constructor(crisp: Crisp) {
     this.parent = crisp;
   }
 
+  /**
+   * Resets the current session
+   */
   reset(reload = false) {
     if (this.parent.isCrispInjected()) {
       window.$crisp.push(["do", "session:reset", [reload]]);
     }
   }
 
+  /**
+   * Sets session segments
+   */
   setSegments(segments: string[], overwrite = false) {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["set", "session:segments", [segments, overwrite]]);
   }
 
+  /**
+   * Sets session data
+   */
   setData(data: object) {
     const payload: Array<[string, unknown]> = [];
 
@@ -66,6 +83,9 @@ export default class CrispSession {
     window.$crisp.push(["set", "session:data", [payload]]);
   }
 
+  /**
+   * Pushes an event to the session
+   */
   pushEvent(
     name: string,
     data: object = {},
@@ -76,6 +96,9 @@ export default class CrispSession {
     }
   }
 
+  /**
+   * Gets session data by key
+   */
   getData(key: string): string | boolean | number | undefined {
     if (!this.parent.isCrispInjected()) {
       return undefined;
@@ -84,6 +107,9 @@ export default class CrispSession {
     return window.$crisp.get("session:data", key);
   }
 
+  /**
+   * Gets the session identifier
+   */
   getIdentifier(): string | null {
     if (!this.parent.isCrispInjected()) {
       return null;
@@ -92,6 +118,9 @@ export default class CrispSession {
     return window.$crisp.get("session:identifier");
   }
 
+  /**
+   * Registers a callback for session loaded event
+   */
   onLoaded(callback: Function) {
     this.parent.createSingletonIfNecessary();
 
@@ -100,12 +129,18 @@ export default class CrispSession {
     window.$crisp.push(["on", "session:loaded", callback]);
   }
 
+  /**
+   * Unregisters the session loaded callback
+   */
   offLoaded() {
     this.parent.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "session:loaded"]);
   }
 
+  /**
+   * Checks if a value is valid for session data
+   */
   private isValidDataValue(value: unknown): boolean {
     return (
       typeof value === "string" ||

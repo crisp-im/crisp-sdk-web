@@ -43,6 +43,7 @@ import CrispChat from "./chat";
  * TYPES
  ***************************************************************************/
 
+/* eslint-disable no-unused-vars, crisp/no-snake-case, @typescript-eslint/no-explicit-any */
 declare global {
   var $crisp: any;
   var CRISP_WEBSITE_ID: string;
@@ -51,7 +52,6 @@ declare global {
   var CRISP_COOKIE_DOMAIN: string;
   var CRISP_COOKIE_EXPIRE: number;
 }
-/* eslint-enable no-var, no-unused-vars, @typescript-eslint/no-explicit-any, crisp/no-snake-case */
 
 export type Options = {
   clientUrl?: string
@@ -70,6 +70,7 @@ export type Options = {
  * ENUMERATIONS
  ***************************************************************************/
 
+/* eslint-disable no-unused-vars */
 export enum ChatboxColors {
   Default = "default",
   Amber = "amber",
@@ -96,13 +97,16 @@ export enum ChatboxPosition {
   Left = "left",
   Right = "right"
 }
+/* eslint-enable no-unused-vars */
 
 /**************************************************************************
  * CLASS
  ***************************************************************************/
 
+/**
+ * Main Crisp SDK class
+ */
 class Crisp {
-  // Options
   private clientUrl: string = "https://client.crisp.chat/l.js";
   private websiteId: string = "";
   private autoload: boolean = true;
@@ -115,10 +119,8 @@ class Crisp {
   private lockMaximized?: boolean;
   private safeMode?: boolean;
 
-  // States
   private injected: boolean = false;
 
-  // Instances
   chat: CrispChat;
   session: CrispSession;
   user: CrispUser;
@@ -126,6 +128,9 @@ class Crisp {
   trigger: CrispTrigger;
   scenario: CrispScenario;
 
+  /**
+   * Constructor
+   */
   constructor() {
     this.chat = new CrispChat(this);
     this.session = new CrispSession(this);
@@ -135,6 +140,9 @@ class Crisp {
     this.scenario = new CrispScenario(this);
   }
 
+  /**
+   * Configures the Crisp SDK
+   */
   configure(websiteId: string, options: Options = {}) {
     this.websiteId = websiteId;
     this.tokenId = options.tokenId;
@@ -154,18 +162,19 @@ class Crisp {
       this.autoload = options.autoload;
     }
 
-    // Autoload Crisp if option is enabled
     if (this.autoload) {
       this.load();
     }
   }
 
+  /**
+   * Loads the Crisp client script
+   */
   load() {
     const head = document.getElementsByTagName("head");
 
     this.createSingletonIfNecessary();
 
-    // Prevents from loading Crisp twice
     if (this.isCrispInjected() === true) {
       return;
     }
@@ -223,10 +232,12 @@ class Crisp {
     this.injected = true;
   }
 
+  /**
+   * Sets the token ID for authentication
+   */
   setTokenId(tokenId?: string) {
     this.tokenId = tokenId;
 
-    // Refresh injected token?
     if (this.isCrispInjected() === true) {
       if (tokenId) {
         window.CRISP_TOKEN_ID = tokenId;
@@ -236,30 +247,45 @@ class Crisp {
     }
   }
 
+  /**
+   * Sets the z-index of the chat widget
+   */
   setZIndex(zIndex: number) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "container:index", [zIndex]]);
   }
 
+  /**
+   * Sets the color theme of the chat widget
+   */
   setColorTheme(color: ChatboxColors) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "color:theme", [color]]);
   }
 
+  /**
+   * Sets whether to hide the widget when operators are away
+   */
   setHideOnAway(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:away", [enabled]]);
   }
 
+  /**
+   * Sets whether to hide the widget on mobile devices
+   */
   setHideOnMobile(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:on:mobile", [enabled]]);
   }
 
+  /**
+   * Sets the position of the chat widget
+   */
   setPosition(position: ChatboxPosition) {
     this.createSingletonIfNecessary();
 
@@ -268,36 +294,54 @@ class Crisp {
     ]]);
   }
 
+  /**
+   * Sets whether to show the availability tooltip
+   */
   setAvailabilityTooltip(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "availability:tooltip", [enabled]]);
   }
 
+  /**
+   * Sets whether vacation mode is enabled
+   */
   setVacationMode(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "hide:vacation", [enabled]]);
   }
 
+  /**
+   * Sets safe mode for error handling
+   */
   setSafeMode(safe: boolean = true) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["safe", safe]);
   }
 
+  /**
+   * Mutes or unmutes notification sounds
+   */
   muteSound(mute: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "sound:mute", [mute]]);
   }
 
+  /**
+   * Toggles the operator count display
+   */
   toggleOperatorCount(enabled: boolean) {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["config", "show:operator:count", [enabled]]);
   }
 
+  /**
+   * Registers a callback for website availability changed event
+   */
   onWebsiteAvailabilityChanged(callback: Function) {
     this.createSingletonIfNecessary();
 
@@ -306,28 +350,37 @@ class Crisp {
     window.$crisp.push(["on", "website:availability:changed", callback]);
   }
 
+  /**
+   * Unregisters the website availability changed callback
+   */
   offWebsiteAvailabilityChanged() {
     this.createSingletonIfNecessary();
 
     window.$crisp.push(["off", "website:availability:changed"]);
   }
 
+  /**
+   * Creates the $crisp singleton if it does not exist
+   */
   createSingletonIfNecessary() {
-    // Assigns $crisp singleton
     if (window.$crisp === undefined) {
       window.$crisp = [];
     }
   }
 
+  /**
+   * Auto-injects the Crisp client if not already injected
+   */
   autoInjectIfNecessary() {
     if (!this.isCrispInjected()) {
       this.load();
     }
   }
 
+  /**
+   * Checks if the Crisp client is injected
+   */
   isCrispInjected(): boolean {
-    // Check if Crisp was injected (either from the Web SDK, or from another \
-    //   source)
     if (this.injected === true || window.$crisp?.is) {
       return true;
     }
@@ -335,6 +388,9 @@ class Crisp {
     return false;
   }
 
+  /**
+   * Defers loading until DOM is ready
+   */
   private deferredLoading() {
     document.addEventListener("DOMContentLoaded", () => {
       this.load();
