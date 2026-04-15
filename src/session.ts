@@ -26,7 +26,7 @@ export default class CrispSession {
     }
   }
 
-  setSegments(segments: string[], overwrite: boolean) {
+  setSegments(segments: string[], overwrite = false) {
     this.parent.createSingletonIfNecessary();
 
     $crisp.push(["set", "session:segments", [segments, overwrite]]);
