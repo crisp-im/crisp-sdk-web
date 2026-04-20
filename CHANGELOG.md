@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v1.1.1
+
+### New Features
+
+* `Crisp.scenario.run` now accepts an optional second argument with custom variables (string, number or boolean values) forwarded to the workflow and available inside scenario blocks as `{{ key }}` templates.
+
 ## v1.1.0
 
 ### New Features
