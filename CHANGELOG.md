@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v1.1.2
+
+### Bug Fixes
+
+* Fixed broken named imports in SSR environments (Next.js, Remix, Vite/React Router) caused by `"type": "module"` making Node parse the UMD bundle as ESM. The UMD bundle is now emitted as `dist/crisp.umd.cjs` and an `exports` field routes ESM and CJS consumers to the correct build.
+
 ## v1.1.1
 
 ### New Features

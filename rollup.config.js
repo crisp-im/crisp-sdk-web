@@ -16,7 +16,7 @@ export default [
     ],
     output: [
       {
-        file: "dist/crisp.umd.js",
+        file: "dist/crisp.umd.cjs",
         format: "umd",
         name: "crisp-sdk-web",
         sourcemap: true
