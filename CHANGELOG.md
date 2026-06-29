@@ -1,6 +1,12 @@
 Changelog
 =========
 
+## v1.2.0
+
+### New Features
+
+* Added `Crisp.hugo.onTool` and `Crisp.hugo.offTool` to register frontend handlers for Hugo Widget Tools (actions the Hugo AI agent can run directly in the visitor's browser during a conversation).
+
 ## v1.1.2
 
 ### Bug Fixes

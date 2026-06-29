@@ -38,6 +38,11 @@ export {
 } from "./session";
 
 import CrispChat from "./chat";
+import CrispHugo from "./hugo";
+
+export {
+  HugoToolHandler
+} from "./hugo";
 
 /**************************************************************************
  * TYPES
@@ -127,6 +132,7 @@ class Crisp {
   message: CrispMessage;
   trigger: CrispTrigger;
   scenario: CrispScenario;
+  hugo: CrispHugo;
 
   /**
    * Constructor
@@ -138,6 +144,7 @@ class Crisp {
     this.message = new CrispMessage(this);
     this.trigger = new CrispTrigger(this);
     this.scenario = new CrispScenario(this);
+    this.hugo = new CrispHugo(this);
   }
 
   /**
